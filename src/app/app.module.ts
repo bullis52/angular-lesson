@@ -9,6 +9,8 @@ import {RouterModule} from "@angular/router";
 import { PostsComponent } from './components/posts/posts.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import {UserService} from "./service/user.service";
+import {UserResolveService} from "./service/user-resolve.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     HttpClientModule,
     RouterModule.forRoot([
       {path:'users',component:UsersComponent,children:[
-          {path:':id',component:UserDetailsComponent},
+          {path:':id',component:UserDetailsComponent,resolve:{data:UserResolveService}},
         ]},
       {path:'posts',component:PostsComponent},
       {path:'comments',component:CommentsComponent}
