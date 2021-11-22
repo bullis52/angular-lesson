@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../service/user.service";
-import {User} from "../../models/User";
+import {IUser} from "../../interfaces/user.interface";
 
 @Component({
   selector: 'app-user-details',
@@ -9,7 +9,7 @@ import {User} from "../../models/User";
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  user:User;
+  user:IUser;
 
   constructor(private activatedRoute:ActivatedRoute,
               private userService:UserService) {
