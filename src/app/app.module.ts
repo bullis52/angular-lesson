@@ -1,5 +1,8 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {registerLocaleData} from '@angular/common'
+import localRU from '@angular/common/locales/ru'
+import localUK from '@angular/common/locales/uk'
 
 import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -15,6 +18,12 @@ import {HomeComponent} from './components/home/home.component';
 import {TestGuard} from "./guards/test.guard";
 import { FormsComponent } from './components/forms/forms.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { TestComponent } from './components/test/test.component';
+import { IncrementPipe } from './pipes/increment.pipe';
+import { BoldAndColorDirective } from './directives/bold-and-color.directive';
+
+registerLocaleData(localRU,'ru')
+registerLocaleData(localUK,'uk')
 
 const routes:Route[] = [
   {path:'',redirectTo:'posts',pathMatch:'full'},
@@ -42,6 +51,9 @@ const routes:Route[] = [
     UserDetailsComponent,
     HomeComponent,
     FormsComponent,
+    TestComponent,
+    IncrementPipe,
+    BoldAndColorDirective,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +62,11 @@ const routes:Route[] = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide:LOCALE_ID,useValue:'ru'},
+    {provide:LOCALE_ID,useValue:'uk'},
+    IncrementPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
